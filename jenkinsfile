@@ -1,0 +1,16 @@
+pipeline
+{
+ agent any
+   stages
+     {
+
+           stage('clone')
+	         {
+		           steps
+			             {
+				                   checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'Git', url: 'https://github.com/rxa80330/pipeline-.git']]])
+						             }
+							           }
+								         stage('build')
+									       {
+									                 steps
