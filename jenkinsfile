@@ -21,7 +21,7 @@ pipeline
        {
           steps
           {
-             echo 'mvn test'
+             echo 'mvn test1'
           }
        }      
       stage('build && SonarQube analysis') 
