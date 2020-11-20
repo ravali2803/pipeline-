@@ -1,16 +1,46 @@
 pipeline
 {
  agent any
-   stages
-     {
+  stages
+  {
+     stage('clone')
+       {
+        steps
+          {
+              checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'Git', url: 'https://github.com/rxa80330/pipeline-.git']]])
+          }
+        }
+      stage('build')
+       {
+          steps
+          {
+             echo 'mvn build'
+          }
+       }
+      stage('test')
+       {
+          steps
+          {
+             echo 'mvn test'
+          }
+       }      
+      stage('build && SonarQube analysis') 
+       {
+            steps 
+            {
+                
+              echo 'sonar analysis'
+            }
+       }    
+                         
+        stage('docker image')
+        {
+            steps
+            {
+             echo 'docker image'
+            }
+        }                       
+    }        
+}
+  
 
-           stage('clone')
-	         {
-		           steps
-			             {
-				                   checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'Git', url: 'https://github.com/rxa80330/pipeline-.git']]])
-						             }
-							           }
-								         stage('build')
-									       {
-									                 steps
