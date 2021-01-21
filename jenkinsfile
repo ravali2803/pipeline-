@@ -37,7 +37,7 @@ pipeline
         {
             steps
             {
-             echo 'docker image'
+             echo 'docker build images'
             }
         }                       
     }
